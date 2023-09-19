@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Use this page to detail your site's privacy policy. Seavus Education Center </p>
+
+<h1>Predavači</h1>
+<ul>
+    <li>Almir</li>
+    <li>Zoran</li>
+</ul>
+
+<h2>Studenti</h2>
+
+
+<ul>
+    
+    @foreach (var item in ViewData["Students"] as List<string>)
+    {
+        <li>@item</li>
+    }
+
+</ul>
+
+<script>
+
+
+</script>
+
