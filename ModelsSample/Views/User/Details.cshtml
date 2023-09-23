@@ -1,0 +1,15 @@
+﻿@model ModelsSample.Models.UserOrderDetailsViewModel
+
+<h1>@ViewData["Title"]</h1>
+
+<h2>Pizza: @Model.Pizza </h2>
+<h2>Price: @Model.Price USD</h2>
+
+<p>Order made by user: </p>
+<ul>
+    <li>@Model.UserInfo </li>
+    <li>@Model.Address </li>
+    <li>@Model.Phone </li>
+</ul>
+
+<p>@ViewBag.UserDataAndDate</p>

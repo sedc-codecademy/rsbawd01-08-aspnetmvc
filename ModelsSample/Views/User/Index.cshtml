@@ -1,0 +1,13 @@
+﻿@model ModelsSample.Models.Order
+
+<h1>@ViewData["Title"]</h1>
+
+<h2>Pizza: @Model.Pizza </h2>
+<h2>Price: @Model.Price USD</h2>
+
+<p>Order made by user: </p>
+<ul>
+    <li>@Model.User.FirstName @Model.User.LastName </li>
+    <li>@Model.User.Address </li>
+    <li>@Model.User.Phone </li>
+</ul>
