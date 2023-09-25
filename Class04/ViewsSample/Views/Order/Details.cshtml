@@ -1,0 +1,43 @@
+﻿@model Order
+
+@* @model ViewsSample.Models.Order --> Commented out <-- *@
+
+@{
+    string status = "Not yet delivered";
+
+    if (Model.IsDelivered)
+        status = "Delivered";
+}
+
+<h2>Order ID: @Model.Id</h2>
+
+<h3>Name: @("Mr./Ms. " + Model.Name)</h3>
+
+<p>@Model.PizzName</p>
+<p>@Model.Price USD</p>
+<p>Status: @status</p>
+
+@if (Model.HasExtras)
+{
+    <p>This order contains extras for <strong>@Model.PizzName</strong></p>
+}
+
+@if (Model.Drinks.Any())
+{
+    <h3>Drinks</h3>
+
+    <ol>
+        @foreach (string drink in Model.Drinks)
+        {
+            <li>@drink</li>
+        }
+    </ol>
+}
+else
+{
+    <p>There is no drinks included in this order</p>
+}
+
+@Html.Partial("~/Views/Shared/Partials/_ShopLocationDetails.cshtml", Model.ShopLocation )
+
+<h4>Current time: @DateTime.Now</h4>

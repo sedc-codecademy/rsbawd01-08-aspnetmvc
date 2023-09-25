@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ModelsSample.Mappers;
 using ModelsSample.Models;
 
 namespace ModelsSample.Controllers
@@ -28,6 +29,19 @@ namespace ModelsSample.Controllers
     
         public IActionResult Details() 
         {
+            Pizza pizza = new Pizza()
+            {
+                Id = 1,
+                PizaSize = PizaSize.Familiy,
+                Name = "Margarita",
+                HasExtras = true,
+                IsOnPromotion = true,
+                Price = 10
+            };
+
+            PizzaViewModel pizzaViewModel = PizzaMapper.MapToPizzaViewModel(pizza);
+
+
             User person = new User()
             {
                 Address = "Bob Str 124",
