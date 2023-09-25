@@ -13,14 +13,12 @@ namespace SEDC.PizzaApp
             Id = 1,
             Name = "Capri",
             Price = 300,
-            IsOnPromotion = true
         },
         new Pizza()
         {
             Id = 2,
             Name = "Pepperoni",
             Price = 400,
-            IsOnPromotion = false
         }
     };
         public static List<User> Users = new List<User>
