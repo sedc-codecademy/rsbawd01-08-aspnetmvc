@@ -1,0 +1,21 @@
+﻿@model CreateOrderViewModel
+
+@using(Html.BeginForm())
+{
+    @Html.LabelFor(m => m.CustomerName)
+    @Html.TextBoxFor(m => m.CustomerName)
+
+    <br />
+
+    @Html.LabelFor(m => m.PizzaName)
+    @Html.TextBoxFor(m => m.PizzaName)
+
+    <br />
+
+    @Html.LabelFor(m => m.Address)
+    @Html.TextBoxFor(m => m.Address)
+
+    <br />
+
+    <button type="submit">Sačuvati</button>
+}

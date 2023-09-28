@@ -1,0 +1,48 @@
+﻿@model OrderDetailsViewModel
+
+<p>Usage of Display method for raw text</p>
+
+@Html.Display("CustomerName")
+
+<br/>
+
+<ul>
+    <li>@Html.DisplayFor(m => m.Name)</li>
+    <li>@Html.DisplayFor(m => m.CustomerName)</li>
+    <li>@Html.DisplayFor(m => m.Date)</li>
+</ul>
+
+<p>Usage of Labels</p>
+
+@Html.LabelFor(m => m.CustomerName)
+
+<br />
+
+<label for="CustomerName">Customer Name</label>
+
+<br />
+<br />
+
+<h3>Usage of TextBox (Input elements)</h3>
+
+@Html.TextBoxFor(m => m.CustomerName)
+
+<br />
+<br />
+<h3>Usage of Dropdowns</h3>
+
+@Html.DropDownListFor(m => m.Size, Html.GetEnumSelectList(Model.Size.GetType()), "Select pizza size")
+
+<br />
+<br />
+
+<select asp-for="Size" asp-items="Html.GetEnumSelectList<PizzaSize>()">
+
+</select>
+
+@Html.HiddenFor(m => m.Id)
+<input type="hidden" asp-for="Id" />
+
+
+
+
