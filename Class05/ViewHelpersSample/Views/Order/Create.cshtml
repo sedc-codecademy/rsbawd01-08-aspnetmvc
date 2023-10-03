@@ -1,6 +1,6 @@
 ﻿@model CreateOrderViewModel
 
-@using(Html.BeginForm())
+@using(Html.BeginForm("Create", "Order"))
 {
     @Html.LabelFor(m => m.CustomerName)
     @Html.TextBoxFor(m => m.CustomerName)
