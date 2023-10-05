@@ -1,38 +1,56 @@
-﻿using SEDC.PizzaApp.DataAccess.Domain.Models;
+﻿using SEDC.PizzaApp.DataAccess.Data;
+using SEDC.PizzaApp.DataAccess.Domain.Models;
 using SEDC.PizzaApp.DataAccess.Repositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SEDC.PizzaApp.DataAccess.Repositories
 {
     public class PizzaRepository : IRepository<Pizza>
     {
-        public void Delete(Pizza entity)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<Pizza> GetAll()
         {
-            throw new NotImplementedException();
+            return StaticDB.Pizzas;
         }
 
         public Pizza GetById(int id)
         {
-            throw new NotImplementedException();
+            Pizza pizza = StaticDB.Pizzas
+                .Where(o => o.Id == id)
+                .FirstOrDefault();
+
+            return pizza;
         }
 
         public int Insert(Pizza entity)
         {
-            throw new NotImplementedException();
+            int newId = StaticDB.PizzaId++;
+            entity.Id = newId;
+
+            StaticDB.Pizzas.Add(entity);
+
+            return entity.Id;
         }
 
         public void Update(Pizza entity)
         {
-            throw new NotImplementedException();
+            Pizza pizza = StaticDB.Pizzas
+                .Where(o => o.Id == entity.Id)
+                .FirstOrDefault();
+
+            int index = StaticDB.Pizzas.IndexOf(pizza);
+
+            StaticDB.Pizzas[index] = entity;
+        }
+
+        public void Delete(Pizza entity)
+        {
+            Pizza pizza = StaticDB.Pizzas
+                .Where(o => o.Id == entity.Id)
+                .FirstOrDefault();
+
+            if (pizza == null)
+                throw new Exception($"There is no record with {entity.Id}");
+
+            StaticDB.Pizzas.Remove(pizza);
         }
     }
 }

@@ -5,6 +5,8 @@ namespace SEDC.PizzaApp.DataAccess.Data
     public static class StaticDB
     {
         public static int OrderId = 1;
+        public static int UserId = 1;
+        public static int PizzaId = 1;
 
         public static List<Pizza> Pizzas { get; set; }
         public static List<Order> Orders { get; set; }

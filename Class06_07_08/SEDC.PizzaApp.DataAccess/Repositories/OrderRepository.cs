@@ -23,6 +23,7 @@ namespace SEDC.PizzaApp.DataAccess.Repositories
         public int Insert(Order entity)
         {
             int newId = StaticDB.OrderId++;
+            entity.Id = newId;
 
             StaticDB.Orders.Add(entity);
 
