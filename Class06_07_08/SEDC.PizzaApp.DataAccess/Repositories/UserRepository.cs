@@ -34,6 +34,7 @@ namespace SEDC.PizzaApp.DataAccess.Repositories
         public int Insert(User entity)
         {
             entity.Id = ++StaticDB.UserId;
+
             StaticDB.Users.Add(entity);
             return entity.Id;
         }
