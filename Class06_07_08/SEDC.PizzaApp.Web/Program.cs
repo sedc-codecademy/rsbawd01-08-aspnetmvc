@@ -1,3 +1,9 @@
+using SEDC.PizzaApp.BusinessLogic.Services;
+using SEDC.PizzaApp.BusinessLogic.Services.Interfaces;
+using SEDC.PizzaApp.DataAccess.Domain.Models;
+using SEDC.PizzaApp.DataAccess.Repositories;
+using SEDC.PizzaApp.DataAccess.Repositories.Interfaces;
+
 namespace SEDC.PizzaApp.Web
 {
     public class Program
@@ -8,6 +14,14 @@ namespace SEDC.PizzaApp.Web
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddScoped<IRepository<User>, UserRepository>();
+            builder.Services.AddScoped<IRepository<Order>, OrderRepository>();
+            builder.Services.AddScoped<IRepository<Pizza>, PizzaRepository>();
+
+            builder.Services.AddScoped<IOrderService, OrderService>();
+            builder.Services.AddScoped<IUserService, UserService>();
+            // builder.Services.AddScoped<IPizzaService, PizzaService>();
 
             var app = builder.Build();
 

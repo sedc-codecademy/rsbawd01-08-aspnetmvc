@@ -1,4 +1,6 @@
-﻿namespace SEDC.PizzaApp.DataAccess.Domain.Models
+﻿using SEDC.PizzaApp.DataAccess.Domain.Enums;
+
+namespace SEDC.PizzaApp.DataAccess.Domain.Models
 {
     public class PizzaOrder : BaseEntity
     {
@@ -7,5 +9,7 @@
 
         public Pizza Pizza { get; set; }
         public int OrderId { get; set; }
+        
+        public PizzaSizeEnum PizzaSize { get; set; }
     }
 }
