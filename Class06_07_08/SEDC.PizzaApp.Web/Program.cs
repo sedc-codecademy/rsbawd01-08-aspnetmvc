@@ -15,10 +15,15 @@ namespace SEDC.PizzaApp.Web
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            // See more info about DI:
+            // https://learn.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-7.0
+            
+            // Registration of our DAL Repository implementation classes
             builder.Services.AddScoped<IRepository<User>, UserRepository>();
             builder.Services.AddScoped<IRepository<Order>, OrderRepository>();
             builder.Services.AddScoped<IRepository<Pizza>, PizzaRepository>();
 
+            // Registration of our BLL Service implementation classes
             builder.Services.AddScoped<IOrderService, OrderService>();
             builder.Services.AddScoped<IUserService, UserService>();
             // builder.Services.AddScoped<IPizzaService, PizzaService>();
