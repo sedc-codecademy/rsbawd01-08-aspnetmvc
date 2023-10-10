@@ -396,3 +396,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/Class06_07_08/SEDC.PizzaApp.DataAccess/Migrations
