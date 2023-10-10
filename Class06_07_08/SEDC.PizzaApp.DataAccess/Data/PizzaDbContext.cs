@@ -13,6 +13,8 @@ namespace SEDC.PizzaApp.DataAccess.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<Pizza> Pizzas { get; set; }
 
+        public DbSet<UserLog> UserLogs { get; set; }
+
         public PizzaDbContext(DbContextOptions options) : base(options) { }
     }
 }

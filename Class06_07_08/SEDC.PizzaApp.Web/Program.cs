@@ -33,7 +33,7 @@ namespace SEDC.PizzaApp.Web
             // Registration of our BLL Service implementation classes
             builder.Services.AddScoped<IOrderService, OrderService>();
             builder.Services.AddScoped<IUserService, UserService>();
-            // builder.Services.AddScoped<IPizzaService, PizzaService>();
+            builder.Services.AddScoped<IPizzaService, PizzaService>();
 
             var app = builder.Build();
 

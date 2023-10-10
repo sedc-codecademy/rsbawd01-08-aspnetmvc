@@ -1,0 +1,9 @@
+﻿@model List<PizzaViewModel>
+
+<ul>
+    @foreach (PizzaViewModel pizza in Model)
+    {
+        <li>@pizza.Id | @pizza.Name</li>
+    }
+</ul>
+

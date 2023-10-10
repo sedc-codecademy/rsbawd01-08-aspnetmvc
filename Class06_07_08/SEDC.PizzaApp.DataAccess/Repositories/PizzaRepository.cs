@@ -6,15 +6,25 @@ namespace SEDC.PizzaApp.DataAccess.Repositories
 {
     public class PizzaRepository : IRepository<Pizza>
     {
+        private PizzaDbContext _dbContext;
+
+        public PizzaRepository(PizzaDbContext pizzaDbContext) 
+        { 
+            _dbContext = pizzaDbContext;
+        }
+
         public List<Pizza> GetAll()
         {
-            return StaticDB.Pizzas;
+            return _dbContext
+                .Pizzas
+                .ToList();
         }
 
         public Pizza GetById(int id)
         {
-            Pizza pizza = StaticDB.Pizzas
-                .Where(o => o.Id == id)
+            Pizza pizza = _dbContext
+                .Pizzas
+                .Where(p => p.Id == id)
                 .FirstOrDefault();
 
             return pizza;
@@ -22,35 +32,22 @@ namespace SEDC.PizzaApp.DataAccess.Repositories
 
         public int Insert(Pizza entity)
         {
-            int newId = StaticDB.PizzaId++;
-            entity.Id = newId;
-
-            StaticDB.Pizzas.Add(entity);
+            _dbContext.Pizzas.Add(entity);
+            _dbContext.SaveChanges();
 
             return entity.Id;
         }
 
         public void Update(Pizza entity)
         {
-            Pizza pizza = StaticDB.Pizzas
-                .Where(o => o.Id == entity.Id)
-                .FirstOrDefault();
-
-            int index = StaticDB.Pizzas.IndexOf(pizza);
-
-            StaticDB.Pizzas[index] = entity;
+            _dbContext.Pizzas.Update(entity);
+            _dbContext.SaveChanges();
         }
 
         public void Delete(Pizza entity)
         {
-            Pizza pizza = StaticDB.Pizzas
-                .Where(o => o.Id == entity.Id)
-                .FirstOrDefault();
-
-            if (pizza == null)
-                throw new Exception($"There is no record with {entity.Id}");
-
-            StaticDB.Pizzas.Remove(pizza);
+            _dbContext.Pizzas.Remove(entity);
+            _dbContext.SaveChanges();
         }
     }
 }
