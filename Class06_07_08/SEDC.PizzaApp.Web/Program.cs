@@ -1,5 +1,7 @@
+using Microsoft.EntityFrameworkCore;
 using SEDC.PizzaApp.BusinessLogic.Services;
 using SEDC.PizzaApp.BusinessLogic.Services.Interfaces;
+using SEDC.PizzaApp.DataAccess.Data;
 using SEDC.PizzaApp.DataAccess.Domain.Models;
 using SEDC.PizzaApp.DataAccess.Repositories;
 using SEDC.PizzaApp.DataAccess.Repositories.Interfaces;
@@ -15,9 +17,14 @@ namespace SEDC.PizzaApp.Web
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            builder.Services.AddDbContext<PizzaDbContext>
+                (options => {
+                    options.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=PizzaMVC_DB;Integrated Security=True;TrustServerCertificate=true");
+                });
+
             // See more info about DI:
             // https://learn.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-7.0
-            
+
             // Registration of our DAL Repository implementation classes
             builder.Services.AddScoped<IRepository<User>, UserRepository>();
             builder.Services.AddScoped<IRepository<Order>, OrderRepository>();
