@@ -6,14 +6,20 @@ namespace SEDC.PizzaApp.DataAccess.Repositories
 {
     public class OrderRepository : IRepository<Order>
     {
+        private PizzaDbContext _dbContext;
+        public OrderRepository(PizzaDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         public List<Order> GetAll()
         {
-            return StaticDB.Orders;
+            return _dbContext.Orders.ToList();
         }
 
         public Order GetById(int id)
         {
-            Order order = StaticDB.Orders
+            Order order = _dbContext.Orders
                 .Where(o => o.Id == id)
                 .FirstOrDefault();
 
@@ -22,23 +28,16 @@ namespace SEDC.PizzaApp.DataAccess.Repositories
 
         public int Insert(Order entity)
         {
-            int newId = StaticDB.OrderId++;
-            entity.Id = newId;
+            _dbContext.Orders.Add(entity);
+            _dbContext.SaveChanges();
 
-            StaticDB.Orders.Add(entity);
-
-            return newId;
+            return entity.Id;
         }
 
         public void Update(Order entity)
         {
-            Order order = StaticDB.Orders
-                .Where(o => o.Id == entity.Id)
-                .FirstOrDefault();
-
-            int index = StaticDB.Orders.IndexOf(order);
-
-            StaticDB.Orders[index] = entity;
+            _dbContext.Orders.Update(entity);
+            _dbContext.SaveChanges();
         }
 
         public void Delete(Order entity)

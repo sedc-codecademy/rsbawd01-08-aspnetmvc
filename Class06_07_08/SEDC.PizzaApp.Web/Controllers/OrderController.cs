@@ -8,19 +8,23 @@ namespace SEDC.PizzaApp.Web.Controllers
     {
         private IOrderService _orderService;
         private IUserService _userService;
-        // private IPizzaService _pizzaService;
+        private IPizzaService _pizzaService;
         
         public OrderController(IOrderService orderService,
-            IUserService userService)
+            IUserService userService,
+            IPizzaService pizzaService)
         {
             _userService = userService;
             _orderService = orderService;
+            _pizzaService = pizzaService;
         }
 
         // Show page with the list of all orders in our database
         public IActionResult Index()
         {
-            throw new NotImplementedException();
+            List<OrderListViewModel> listViewModel = _orderService.GetAllOrders();
+
+            return View(listViewModel);
         }
 
         // Show page with details of Order
@@ -30,29 +34,44 @@ namespace SEDC.PizzaApp.Web.Controllers
         }
 
         // This is the action which will return the view with form for creating new Order
+        [HttpGet]
         public IActionResult Create()
         {
-            throw new NotImplementedException();
+            OrderViewModel orderViewModel = new OrderViewModel();
+
+            ViewBag.Users = _userService.GetAllUsersForDropdown();
+
+            return View(orderViewModel);
         }
 
         // This action will be used for accepting the data from the form and passing it for business logic layer
         [HttpPost]
         public IActionResult Create(OrderViewModel orderViewModel)
         {
-            throw new NotImplementedException();
+            _orderService.CreateOrder(orderViewModel);
+
+            return RedirectToAction("Index");
         }
 
         // This action will return the view for adding new pizza to existing order
         public IActionResult AddPizza(int id)
         {
-            throw new NotImplementedException();
+            PizzaOrderViewModel pizzaOrderViewModel = new PizzaOrderViewModel();
+
+            pizzaOrderViewModel.OrderId = id;
+
+            ViewBag.Pizzas = _pizzaService.GetPizzasForDropdown();
+
+            return View(pizzaOrderViewModel);
         }
 
         // This action will be used for accepting the data from the user and passing it next to business layer
         [HttpPost]
         public IActionResult AddPizza(PizzaOrderViewModel pizzaOrderViewModel)
         {
-            throw new NotImplementedException();
+            _orderService.AddPizzaToOrder(pizzaOrderViewModel);
+
+            return RedirectToAction("Index");
         }
 
         // This action will return the view for editing order

@@ -6,10 +6,12 @@ namespace SEDC.PizzaApp.DataAccess.Domain.Models
     {
         public bool Delivered { get; set; }
         public string Location { get; set; }
-        public User User { get; set; }
+
+        public int UserId { get; set; }
+        public virtual User User { get; set; }
 
         public PaymentMethodEnum PaymentMethod { get; set; }
 
-        public List<PizzaOrder> PizzaOrders { get; set; }
+        public virtual List<PizzaOrder> PizzaOrders { get; set; }
     }
 }

@@ -19,7 +19,9 @@ namespace SEDC.PizzaApp.Web
 
             builder.Services.AddDbContext<PizzaDbContext>
                 (options => {
-                    options.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=PizzaMVC_DB;Integrated Security=True;TrustServerCertificate=true");
+                    options
+                    .UseLazyLoadingProxies()
+                    .UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=PizzaMVC_DB;Integrated Security=True;TrustServerCertificate=true");
                 });
 
             // See more info about DI:

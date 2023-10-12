@@ -1,1 +1,25 @@
-﻿
+﻿@model OrderViewModel
+
+<h2>Create new order:</h2>
+
+@using(Html.BeginForm("Create", "Order"))
+{
+    @Html.LabelFor(m => m.Location)
+    @Html.TextBoxFor(m => m.Location)
+
+    <br />
+    <br />
+
+    @Html.DropDownListFor(m => m.PaymentMethod, Html.GetEnumSelectList(Model.PaymentMethod.GetType()), "Select payment method")
+
+    <br />
+    <br />
+
+    <label asp-for="UserId"></label>
+    <select asp-for="UserId" asp-items="@(new SelectList(ViewBag.Users, "Id", "FullName"))"></select>
+
+    <br />
+    <br />
+
+    <button type="submit">Sačuvati</button>
+}

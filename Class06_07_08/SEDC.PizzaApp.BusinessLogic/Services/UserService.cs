@@ -3,11 +3,6 @@ using SEDC.PizzaApp.BusinessLogic.Services.Interfaces;
 using SEDC.PizzaApp.BusinessLogic.ViewModels.UserViewModel;
 using SEDC.PizzaApp.DataAccess.Domain.Models;
 using SEDC.PizzaApp.DataAccess.Repositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SEDC.PizzaApp.BusinessLogic.Services
 {

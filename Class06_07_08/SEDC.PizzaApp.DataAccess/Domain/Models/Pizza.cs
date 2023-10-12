@@ -9,6 +9,6 @@ namespace SEDC.PizzaApp.DataAccess.Domain.Models
         public bool IsOnPromotion { get; set; }
         public bool HasExtras { get; set; }
 
-        public List<PizzaOrder> PizzaOrders { get; set; }
+        public virtual List<PizzaOrder> PizzaOrders { get; set; }
     }
 }

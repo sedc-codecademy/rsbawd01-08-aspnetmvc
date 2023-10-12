@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SEDC.PizzaApp.BusinessLogic.Services.Interfaces;
 using System.Diagnostics.Contracts;
 using ViewHelpersSample.Models.ViewModels;
 
@@ -6,6 +7,11 @@ namespace ViewHelpersSample.Controllers
 {
     public class OrderController : Controller
     {
+        public OrderController()
+        {
+            
+        }
+
         public IActionResult Index()
         {
             return View();

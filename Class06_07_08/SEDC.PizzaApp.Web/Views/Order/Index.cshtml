@@ -1,1 +1,40 @@
-﻿
+﻿@model List<OrderListViewModel>
+
+<h2>List of orders in the DataBase: </h2>
+<ol>
+
+    @foreach (OrderListViewModel item in Model)
+    {
+        <li>
+            <label>@item.UserFullName</label>
+            <br/>
+            <label>
+                Delivered? @item.Delivered ? <strong>Yes</strong> : <strong>No</strong>
+            </label>
+            <br />
+
+            @if (item.PizzaNames.Any())
+            {
+                <label>Pizzas: </label>
+                <br />
+
+                <ul>
+                    @foreach (string pizzaName in item.PizzaNames)
+                    {
+                        <li>@pizzaName</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <label>There is no pizzas in this order yet</label>
+            }
+
+            <br />
+
+            <a class="nav-link text-dark" asp-area="" asp-route-id="@item.Id" asp-controller="Order" asp-action="AddPizza">Dodaj Pizzu na Narudzbu</a>
+        </li>
+        <hr>
+    }
+
+</ol>

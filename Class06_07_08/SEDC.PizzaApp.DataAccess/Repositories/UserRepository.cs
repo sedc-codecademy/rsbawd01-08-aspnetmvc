@@ -11,6 +11,12 @@ namespace SEDC.PizzaApp.DataAccess.Repositories
 {
     public class UserRepository : IRepository<User>
     {
+        private PizzaDbContext _dbContext;
+        public UserRepository(PizzaDbContext pizzaDbContext)
+        {
+            _dbContext = pizzaDbContext;
+        }
+
         public void Delete(User entity)
         {
             User user = StaticDB.Users.FirstOrDefault(x => x.Id == entity.Id);
@@ -23,12 +29,12 @@ namespace SEDC.PizzaApp.DataAccess.Repositories
 
         public List<User> GetAll()
         {
-            return StaticDB.Users;
+            return _dbContext.Users.ToList();
         }
 
         public User GetById(int id)
         {
-            return StaticDB.Users.FirstOrDefault(x => x.Id == id);
+            return _dbContext.Users.FirstOrDefault(x => x.Id == id);
         }
 
         public int Insert(User entity)

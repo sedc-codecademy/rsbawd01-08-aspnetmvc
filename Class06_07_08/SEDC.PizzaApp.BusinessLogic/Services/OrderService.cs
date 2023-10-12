@@ -31,7 +31,6 @@ namespace SEDC.PizzaApp.BusinessLogic.Services
             if (user == null)
                 throw new Exception($"There is no user with {user.Id}");
 
-            // Create New Order
             Order order = new Order()
             {
                 Delivered = false,
@@ -122,6 +121,11 @@ namespace SEDC.PizzaApp.BusinessLogic.Services
             };
 
             orderDb.PizzaOrders.Add(pizzaOrder);
+            
+            // _dbContext.PizzaOrders.Inser(pizzaOrder);
+            // _dbContext.SaveChanges();
+
+            _orderRepository.Update(orderDb);
         }
 
         public void DeleteOrder(int id)

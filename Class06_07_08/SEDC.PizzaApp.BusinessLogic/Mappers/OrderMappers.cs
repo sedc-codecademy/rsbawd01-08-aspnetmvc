@@ -38,9 +38,11 @@ namespace SEDC.PizzaApp.BusinessLogic.Mappers
                 Delivered = order.Delivered,
                 Id = order.Id,
                 UserFullName = $"{order.User.FirstName} {order.User.LastName}",
-                PizzaNames = order.PizzaOrders
+                PizzaNames = order.PizzaOrders != null ? 
+                
+                order.PizzaOrders
                     .Select(p => p.Pizza.Name)
-                     .ToList()
+                     .ToList() : null
             };
         }
     
